@@ -1,0 +1,12 @@
+
+sync_args: "--process-groups --users mapped"
+root_config: "user-sync-config.yml"
+fail_on_error: false
+allowed_errors:
+
+assertions: |-
+  creating user with user key: federatedid,callsaul2@usersynctest.com
+  creating user with user key: federatedid,callsaul6@usersynctest.com
+  creating user with user key: federatedid,callsaul7@usersynctest.com
+  creating user with user key: federatedid,callsaul8@usersynctest.com
+  creating user with user key: federatedid,callsaul9@usersynctest.com

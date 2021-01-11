@@ -1,0 +1,7 @@
+
+sync_args: "sign-sync"
+root_config: "sign-sync-config.yml"
+fail_on_error: true
+allowed_errors:
+
+assertions: |-

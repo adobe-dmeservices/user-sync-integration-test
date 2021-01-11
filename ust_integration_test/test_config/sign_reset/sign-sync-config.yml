@@ -1,0 +1,113 @@
+# Sign API Connections
+sign_orgs:
+  primary: connector-sign.yml
+  #secondary: connector-sign.yml
+
+# Similar to "directory_users.connectors" in user-sync-config.yml
+identity_source:
+  type: ldap
+  connector: connector-ldap.yml
+
+# Options that govern the synchronization of users
+user_sync:
+  sign_only_limit: 100
+
+ # create_users: False
+  ## Flag to (dis)allow deactivation of users in the Sign Neptune Console
+ # deactivate_users: False
+
+# User management group/role mappings
+user_management:
+#
+
+#  - directory_group: Sign Group 1
+#    sign_group: Sign Group 1
+#    admin_role: #@[NORMAL_USER]
+
+#  - directory_group: Sign Group 2
+#    sign_group: Sign Group 2
+#    admin_role: #@[NORMAL_USER]
+#  - directory_group: Reset
+#    group_admin: True
+#
+#  - directory_group: Sign Group 2
+#    sign_group: Sign Group 1
+#    group_admin:
+#    account_admin:
+#
+#  - directory_group: Sign Group 1
+#    sign_group: Sign Group 2
+#    group_admin:
+#    account_admin:
+#
+#  - directory_group: Sign Admin 2
+##    sign_group:
+##    group_admin: True
+#    account_admin: True
+
+#  - directory_group: Reset
+## TEST 1
+#    - directory_group: Sign Group 1
+#      sign_group: Sign Group 1
+#      group_admin:
+#      account_admin:
+#
+#    - directory_group: Sign Admin 2
+#      group_admin: True
+
+## TEST 1B
+#  - directory_group: Sign Admin 2
+#    group_admin: True
+
+## TEST 2
+#  - directory_group: Sign Group 1
+#    sign_group: Sign Group 1
+#    group_admin: True
+#
+#  - directory_group: Sign Group 1
+#    sign_group: Sign Group 1
+#    account_admin: True
+
+## TEST 2B
+#  - directory_group: Sign Group 1
+#    sign_group: Sign Group 1
+#    group_admin: True
+#
+#  - directory_group: Sign Group 1
+#    sign_group: Sign Group 2
+#    account_admin: True
+
+## TEST 3
+#  - directory_group: Sign Group 1
+#    sign_group: Sign Group 1
+#  - directory_group: Sign Group 2
+#    sign_group: Sign Group 1
+#  - directory_group: Sign Group 2
+#    group_admin: True
+#  - directory_group: Sign Group 2
+#    account_admin: True
+#  - directory_group: Sign Admin 2
+#    account_admin: True
+
+## TEST 4
+  - directory_group: Sign Group 1
+  - directory_group: Sign Group 2
+    sign_group: Sign Group 1
+  - directory_group: Sign Group 1
+    sign_group: Sign Group 2
+  - directory_group: Sign Group 2
+    sign_group: Sign Group 2
+
+
+# Logging options
+logging:
+  log_to_file: True
+  file_log_directory: sign_logs
+  file_log_name_format: '{:%Y-%m-%d}-sign.log'
+  file_log_level: info
+  console_log_level: debug
+
+# Defaults for options that can be passed as CLI options
+#invocation_defaults:
+#  #users: all
+#  test_mode: True
