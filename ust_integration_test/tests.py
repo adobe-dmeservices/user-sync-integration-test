@@ -1,8 +1,9 @@
 import logging
 import os
+import sys
 
+from ust_integration_test import init_logger
 from ust_integration_test.test_sync import TestSync
-from ust_integration_test.utils import init_logger, get_test_name
 
 init_logger(logging.DEBUG)
 logger = logging.getLogger()
@@ -32,3 +33,8 @@ class TestUST(object):
 
     def test_create_all_users_2(self, tmpdir):
         run_test(get_test_name(), tmpdir)
+
+
+# noinspection PyProtectedMember,PyUnresolvedReferences
+def get_test_name():
+    return sys._getframe(1).f_code.co_name

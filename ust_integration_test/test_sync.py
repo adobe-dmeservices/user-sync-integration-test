@@ -1,5 +1,6 @@
 import logging
 import os
+import platform
 import re
 from distutils.dir_util import copy_tree
 from os.path import join
@@ -10,7 +11,7 @@ from pytest import fail
 
 from ust_integration_test.resources import get_resource
 from ust_integration_test.test_config import get_test_dir
-from ust_integration_test.utils import normalize_text
+
 
 
 class TestSync():
@@ -43,7 +44,7 @@ class TestSync():
     def exec_shell(self, command, shell=False):
         p = Popen(command.split(" "), stdout=PIPE, stdin=PIPE, stderr=STDOUT, shell=shell)
         for line in iter(p.stdout.readline, b''):
-            line = normalize_text(line)
+            line = self.normalize_text(line)
             self.logger.info(line)
             self.sync_results.append(line)
 
@@ -76,9 +77,9 @@ class TestSync():
         for c in self.setup_commands:
             self.exec_shell(c, True)
 
-    def sync(self):
-        self.logger.info("Beginning sync")
+    def sync(self):        
         command = "./{0} {1}".format(self.exe_name, self.sync_args)
+        self.logger.info("Beginning sync: {}".format(command))
         self.exec_shell(command)
 
     def validate_results(self):
@@ -93,12 +94,12 @@ class TestSync():
                 if a.startswith('REGEX:'):
                     if re.search(a[6:].strip(), l, flags=re.IGNORECASE):
                         self.assertions.remove(a)
-                elif normalize_text(a) in l:
+                elif self.normalize_text(a) in l:
                     self.assertions.remove(a)
 
             if self.fail_on_error:
                 if re.search('(ERROR)|(CRITICAL)|(EXCEPTION)|(WARNING)', l, flags=re.IGNORECASE):
-                    if not True in {normalize_text(s) in normalize_text(l) for s in self.allowed_errors}:
+                    if not True in {self.normalize_text(s) in self.normalize_text(l) for s in self.allowed_errors}:
                         raise TestFailedException("Encountered a non-ignored error: {}".format(l))
 
         if self.assertions:
@@ -111,6 +112,15 @@ class TestSync():
         self.logger.info("CLI args: " + self.sync_args)
         self.logger.info("Assertions: \n" + "\n".join(self.assertions))
 
+    def normalize_text(self, text):
+        try:
+            text = text.decode()
+        except:
+            pass
+        return str(text).strip().lower()
+
+    def is_windows(self):
+        return platform.system().lower() == "windows"
 
 class TestFailedException(Exception):
     pass
