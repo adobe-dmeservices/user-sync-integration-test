@@ -26,12 +26,10 @@ class TestSync():
         self.sync_args = self.config.get('sync_args', '')
         self.setup_commands = self.config.get('setup_commands', [])
         self.assertions = self.config.get('assertions', '').splitlines()
-        self.root_config = self.config.get('root_config')
         self.fail_on_error = bool(self.config.get('fail_on_error', True))
         self.allowed_errors = self.config.get('allowed_errors') or []
         self.always_allowed_errors = self.config.get('always_allowed_errors') or []
         self.exe_name = self.config.get('exe_name', 'user-sync')
-        # self.exe_name = self.exe_name.rstrip(".exe")
 
     def load_test_env(self, name):
         directory = get_test_dir(name)
@@ -108,7 +106,6 @@ class TestSync():
     def log_start(self):
         self.logger.info(
             "\n========================== Begin test: [{}] ==========================".format(self.test_name))
-        self.logger.info("Using: " + os.path.abspath(self.root_config))
         self.logger.info("CLI args: " + self.sync_args)
         self.logger.info("Assertions: \n" + "\n".join(self.assertions))
 

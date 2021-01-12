@@ -1,0 +1,5 @@
+
+sync_args: "sign-sync"
+fail_on_error: true
+allowed_errors:
+exe_name: "user-sync-sign"

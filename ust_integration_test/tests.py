@@ -21,17 +21,19 @@ def run_test(test_name, test_dir):
 def delete_users(tmpdir):
     run_test('setup.delete_all_users', tmpdir)
 
+def reset_sign_users(tmpdir):
+    run_test('setup.reset_sign_users', tmpdir)
 
 def test_manual(tmpdir):
-    delete_users(tmpdir)
-
+    #delete_users(tmpdir)
+    reset_sign_users(tmpdir)
 
 class TestUST(object):
 
     def test_create_all_users(self, tmpdir):
         run_test(get_test_name(), tmpdir)
 
-    def test_create_all_users_2(self, tmpdir):
+    def test_sign_reset(self, tmpdir):
         run_test(get_test_name(), tmpdir)
 
 
