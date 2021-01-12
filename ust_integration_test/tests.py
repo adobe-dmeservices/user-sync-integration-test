@@ -17,10 +17,12 @@ def run_test(test_name, test_dir):
         os.chdir(root_dir)
 
 
-class TestSetUp(object):
+def delete_users(tmpdir):
+    run_test('setup.delete_all_users', tmpdir)
 
-    def test_delete_all_users(self, tmpdir):
-        run_test('delete_all_users', tmpdir)
+
+def test_manual(tmpdir):
+    delete_users(tmpdir)
 
 
 class TestUST(object):

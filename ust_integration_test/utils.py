@@ -1,35 +1,19 @@
 import logging
 import logging.config
 import os
+import platform
 import sys
 from collections import Mapping
 from copy import deepcopy
-from os.path import join
 
-import yaml
-
-from ust_integration_test.resources import get_resource
-
-test_config_dir = join(os.getcwd(), 'test_config')
-test_defaults = join(test_config_dir, 'test_defaults.yml')
-
-
-def get_test_config(name):
-
-    if name == "delete_all_users":
-        directory = join(get_resource("test_setup"), "delete_all_users")
-    else:
-        directory = join(test_config_dir, name)
-    with open(join(directory, 'test.yml'), 'r') as f:
-        return yaml.safe_load(f), directory
-
-
-def load_test_defaults():
-    with open(test_defaults, 'r') as f:
-        return yaml.safe_load(f)
 
 def get_test_name():
     return sys._getframe(1).f_code.co_name
+
+
+def is_windows():
+    return platform.system().lower() == "windows"
+
 
 def normalize_text(text):
     try:
@@ -37,6 +21,7 @@ def normalize_text(text):
     except:
         pass
     return str(text).strip().lower()
+
 
 def init_logger(level=logging.DEBUG):
     results_dir = "results"

@@ -107,6 +107,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-ust_integration_test/resources/shared_test_files/*.yml
+ust_integration_test/resources/shared_test_files/*
 ust_integration_test/results
 connector-ldap.yml

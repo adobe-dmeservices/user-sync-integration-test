@@ -1,0 +1,10 @@
+fail_on_error: false
+check_results: true
+
+# These are errors we do not care about in a normal sync, so will
+# always be part of our skipped errors
+always_allowed_errors:
+  - 'success, error'
+  - 'UMAPI timeout'
+  - 'Next retry in'
+
