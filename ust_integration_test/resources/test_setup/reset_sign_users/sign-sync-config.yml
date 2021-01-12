@@ -4,8 +4,8 @@ sign_orgs:
 
 # Similar to "directory_users.connectors" in user-sync-config.yml
 identity_source:
-  type: ldap
-  connector: connector-ldap.yml
+  type: csv
+  connector: connector-csv.yml
 
 # Options that govern the synchronization of users
 user_sync:
@@ -14,3 +14,7 @@ user_sync:
 # User management group/role mappings
 user_management:
   - directory_group: Reset
+
+logging:
+  file_log_level: debug
+  console_log_level: debug

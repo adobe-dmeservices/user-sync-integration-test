@@ -1,0 +1,9 @@
+
+sync_args: "sign-sync"
+root_config: "sign-sync-config.yml"
+fail_on_error: true
+allowed_errors:
+exe_name: "user-sync-sign"
+assertions: |-
+ updated sign user 'jdax@lifesigns.com', group (new): 'sign group 1', roles (new): ['group_admin']
+ updated sign user 'cdata@lifesigns.com', group (unchanged): 'default group', roles (new): ['group_admin']
