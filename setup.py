@@ -39,6 +39,7 @@ def package_files(*dirs):
 
 
 extra_files = package_files('spypi/resources')
+extra_files.extend(package_files('spypi/test_config'))
 
 test_deps = ['mock', 'pytest']
 setup_deps = ['wheel']
@@ -59,8 +60,6 @@ setup(name='ust-integration-test',
       },
       install_requires=[
           'PyYAML',
-          'Click',
-          'click_default_group'
       ],
       extras_require={
           'test': test_deps,
@@ -68,9 +67,4 @@ setup(name='ust-integration-test',
       },
       setup_requires=setup_deps,
       tests_require=test_deps,
-      entry_points={
-          'console_scripts': [
-              'ust_integration_test = ust_integration_test.app:main'
-          ]
-      },
       )
