@@ -38,11 +38,26 @@ class TestUST(object):
     def test_create_all_users(self, tmpdir):
         run_test(get_test_name(), tmpdir)
 
+class TestSignSync(object):
+
+    test_dir = "sign_sync"
+
     def test_sign_case_1(self, tmpdir):
         reset_sign_users(tmpdir)
         run_test(get_test_name(), tmpdir)
 
+    def test_sign_case_1B(self, tmpdir):
+        reset_sign_users(tmpdir)
+        run_test(get_test_name(self.test_dir), tmpdir)
+
+    def test_sign_case_2(self, tmpdir):
+        reset_sign_users(tmpdir)
+        run_test(get_test_name(self.test_dir), tmpdir)
+
+    def test_sign_case_2B(self, tmpdir):
+        reset_sign_users(tmpdir)
+        run_test(get_test_name(self.test_dir), tmpdir)
 
 # noinspection PyProtectedMember,PyUnresolvedReferences
-def get_test_name():
-    return re.sub('^test_', '', sys._getframe(1).f_code.co_name)
+def get_test_name(test_dir):
+    return os.path.join(test_dir, re.sub('^test_', '', sys._getframe(1).f_code.co_name))

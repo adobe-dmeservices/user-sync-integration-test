@@ -1,0 +1,20 @@
+# Sign API Connections
+sign_orgs:
+  primary: connector-sign.yml
+  #secondary: connector-sign.yml
+
+# Similar to "directory_users.connectors" in user-sync-config.yml
+identity_source:
+  type: ldap
+  connector: connector-ldap.yml
+
+# Options that govern the synchronization of users
+user_sync:
+  sign_only_limit: 100
+
+# User management group/role mappings
+user_management:
+
+## TEST 1B
+  - directory_group: Sign Admin 2
+    group_admin: True

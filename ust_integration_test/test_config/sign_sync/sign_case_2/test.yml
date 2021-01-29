@@ -1,0 +1,6 @@
+sync_args: "sign-sync"
+fail_on_error: true
+allowed_errors:
+exe_name: "user-sync-sign"
+assertions: |-
+  updated sign user 'jdax@lifesigns.com', group (new): 'sign group 1', roles (new): ['account_admin', 'group_admin']
